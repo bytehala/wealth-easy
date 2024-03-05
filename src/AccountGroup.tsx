@@ -35,7 +35,7 @@ export const AccountGroup = ({
             alignItems: 'center',
           }}>
           <Text>{total}</Text>
-          <Icon name="trash" size={24} color="black" />
+          <Icon name="chevron-down" size={24} color="black" />
           {/** TODO: Add accordion below that will animate */}
         </View>
       </View>
