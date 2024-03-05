@@ -1,7 +1,7 @@
 // An array of AccountWrapper objects, {accountType: string;  total: number; accounts: account[]}
 // account object: {id: string; name: string; balance: number, simplePerformance: number, subType: string}
 
-import { AccountGroup } from '../src/AccountGroup';
+import { AccountWrapper } from '../src/AccountGroup';
 
 // This is the data that will be used to populate the Accounts screen
 

@@ -20,7 +20,6 @@ export const AccountGroup = ({
       style={{
         borderWidth: 1,
         marginVertical: 2,
-        marginHorizontal: 16,
         padding: 16,
         borderRadius: 10,
       }}>
@@ -29,9 +28,15 @@ export const AccountGroup = ({
           <Text>{accountType}</Text>
           <Text>{accounts?.length} accounts</Text>
         </View>
-        <View>
+
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
           <Text>{total}</Text>
-          <Icon name="rocket" size={24} color="black" />
+          <Icon name="trash" size={24} color="black" />
+          {/** TODO: Add accordion below that will animate */}
         </View>
       </View>
     </View>
