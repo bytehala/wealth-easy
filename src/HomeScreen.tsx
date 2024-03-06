@@ -1,16 +1,131 @@
-import { Text, View } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { AccountGroup } from './AccountGroup';
 import { Accounts } from '../__sampleData__/Accounts';
 import { useState } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const HomeScreen = () => {
   const [data, setData] = useState(Accounts);
+  const [stockTickersData, _] = useState(stockTickers);
   return (
     <View style={{ paddingVertical: 32, paddingHorizontal: 16 }}>
       <Text style={{ fontWeight: 'bold', marginBottom: 8 }}>Accounts</Text>
       {data.map((accountWrapper, index) => {
         return <AccountGroup key={index} accountWrapper={accountWrapper} />;
       })}
+      <TouchableOpacity
+        style={{
+          marginVertical: 16,
+          borderWidth: 1,
+          height: 48,
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 25,
+          flexDirection: 'row',
+        }}>
+        <Icon name="plus" size={24} color="black" />
+        <Text style={{ fontWeight: 'bold' }}>Add an account</Text>
+      </TouchableOpacity>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {stockTickersData.map((stockTicker, index) => {
+          return <StockTickerCard key={index} {...stockTicker} />;
+        })}
+      </ScrollView>
     </View>
   );
 };
+
+const StockTickerCard = ({
+  ticker,
+  currencySymbol, // TODO: currencySymbol is not rendering
+  price,
+  currencyCode,
+  performance,
+  description,
+}: StockTicker) => {
+  return (
+    <View
+      style={{
+        padding: 16,
+        margin: 8,
+        borderWidth: 1,
+        borderRadius: 10,
+        width: 160,
+      }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Icon
+          name="rocket"
+          size={24}
+          color="black"
+          style={{
+            borderWidth: 1,
+            padding: 8,
+            borderRadius: 20,
+            marginRight: 8,
+          }}
+        />
+        <Text style={{ fontWeight: 'bold' }}>{ticker}</Text>
+      </View>
+      <Text style={{ fontWeight: 'bold' }}>
+        ${price} {currencyCode}
+      </Text>
+      <Text>
+        {performance > 0 ? '+' : ''}
+        {performance}%
+      </Text>
+      <Text numberOfLines={1}>{description}</Text>
+    </View>
+  );
+};
+
+type StockTicker = {
+  ticker: string;
+  price: number;
+  currencySymbol: string;
+  currencyCode: string;
+  performance: number;
+  description: string; // e.g. Vanguard S&P 500 Index ETF
+};
+
+const stockTickers: StockTicker[] = [
+  {
+    ticker: 'VFV',
+    currencySymbol: '$',
+    price: 222.45,
+    currencyCode: 'CAD',
+    performance: 0.05,
+    description: 'Vanguard S&P 500 Index ETF',
+  },
+  {
+    ticker: 'AAPL',
+    currencySymbol: '$',
+    price: 123.45,
+    currencyCode: 'USD',
+    performance: -0.05,
+    description: 'Apple Inc.',
+  },
+  {
+    ticker: 'GOOGL',
+    currencySymbol: '$',
+    price: 2345.67,
+    currencyCode: 'USD',
+    performance: 0.03,
+    description: 'Alphabet Inc.',
+  },
+  {
+    ticker: 'AMZN',
+    currencySymbol: '$',
+    price: 3456.78,
+    currencyCode: 'USD',
+    performance: 0.07,
+    description: 'Amazon.com Inc.',
+  },
+  {
+    ticker: 'MSFT',
+    currencySymbol: '$',
+    price: 456.78,
+    currencyCode: 'USD',
+    performance: 2.97,
+    description: 'Microsoft Corporation',
+  },
+];
