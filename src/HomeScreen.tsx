@@ -3,12 +3,13 @@ import { AccountGroup } from './AccountGroup';
 import { Accounts } from '../__sampleData__/Accounts';
 import { useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { OffersAndServices } from './more/OffersAndServices';
 
 export const HomeScreen = () => {
   const [data, setData] = useState(Accounts);
   const [stockTickersData, _] = useState(stockTickers);
   return (
-    <View style={{ paddingVertical: 32, paddingHorizontal: 16 }}>
+    <ScrollView style={{ paddingVertical: 32, paddingHorizontal: 16 }}>
       <Text style={{ fontWeight: 'bold', marginBottom: 8 }}>Accounts</Text>
       {data.map((accountWrapper, index) => {
         return <AccountGroup key={index} accountWrapper={accountWrapper} />;
@@ -31,7 +32,9 @@ export const HomeScreen = () => {
           return <StockTickerCard key={index} {...stockTicker} />;
         })}
       </ScrollView>
-    </View>
+      <OffersAndServices />
+      <View style={{ height: 100 }} />
+    </ScrollView>
   );
 };
 
