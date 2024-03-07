@@ -25,6 +25,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
+# manual linking is sometimes needed when automatic linking fails
 pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
 target 'MyApp' do
