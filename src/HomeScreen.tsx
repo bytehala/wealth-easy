@@ -2,7 +2,7 @@ import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { AccountGroup } from './AccountGroup';
 import { Accounts } from '../__sampleData__/Accounts';
 import { useState } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Entypo';
 import { OffersAndServices } from './more/OffersAndServices';
 
 export const HomeScreen = () => {
