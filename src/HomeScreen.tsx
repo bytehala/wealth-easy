@@ -5,10 +5,25 @@ import { useState } from 'react';
 import Icon from 'react-native-vector-icons/Entypo';
 import { OffersAndServices } from './more/OffersAndServices';
 import React from 'react';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+
+// Define a type for your navigation structure
+type RootStackParamList = {
+  Home: undefined;
+  Watchlist: { watchlist: StockTicker[] }; // replace StockTicker[] with the correct type for your watchlist
+};
+
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 export const HomeScreen = () => {
   const [data, setData] = useState(Accounts);
   const [stockTickersData, _] = useState(stockTickers);
+
+  const navigation = useNavigation<NavigationProp>();
+
+  console.log('HomeScreen.tsx: navigation: ', navigation);
+
   return (
     <ScrollView style={{ paddingVertical: 32, paddingHorizontal: 16 }}>
       <Text style={{ fontWeight: 'bold', marginBottom: 8 }}>Accounts</Text>
@@ -33,6 +48,23 @@ export const HomeScreen = () => {
           return <StockTickerCard key={index} {...stockTicker} />;
         })}
       </ScrollView>
+      <TouchableOpacity
+        style={{
+          marginVertical: 16,
+          borderWidth: 1,
+          height: 48,
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 25,
+          flexDirection: 'row',
+        }}
+        onPress={() => {
+          console.log('Open watchlist');
+          console.log(stockTickersData);
+          navigation.navigate('Watchlist', { watchlist: stockTickersData });
+        }}>
+        <Text style={{ fontWeight: 'bold' }}>Open Watchlist</Text>
+      </TouchableOpacity>
       <OffersAndServices />
       <View style={{ height: 100 }} />
     </ScrollView>
@@ -82,7 +114,7 @@ const StockTickerCard = ({
   );
 };
 
-type StockTicker = {
+export type StockTicker = {
   ticker: string;
   price: number;
   currencySymbol: string;
@@ -133,3 +165,6 @@ const stockTickers: StockTicker[] = [
     description: 'Microsoft Corporation',
   },
 ];
+function createStackNavigator() {
+  throw new Error('Function not implemented.');
+}

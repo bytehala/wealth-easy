@@ -18,6 +18,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { HomeScreen } from './src/HomeScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { WatchListScreen } from './src/WatchlistScreen';
 
 const Stack = createStackNavigator();
 
@@ -29,7 +30,7 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={[backgroundStyle, { flex: 1 }]}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
@@ -37,9 +38,8 @@ function App(): React.JSX.Element {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name={'Home'} component={HomeScreen} />
+          <Stack.Screen name={'Watchlist'} component={WatchListScreen} />
         </Stack.Navigator>
-        {/* <Stack.Screen name={'Watchlist'} component={WatchListScreen} /> */}
-        <HomeScreen />
       </NavigationContainer>
     </SafeAreaView>
   );

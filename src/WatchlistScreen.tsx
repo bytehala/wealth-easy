@@ -1,16 +1,27 @@
 import { ScrollView, Text, View } from 'react-native';
 import { StockTicker } from './HomeScreen';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
+import { useRoute } from '@react-navigation/native';
 
-export const WatchListScreen = (watchlist: StockTicker[]) => {
-  const [data, setData] = useState(watchlist);
+export const WatchListScreen = () => {
+  const [data, setData] = useState<StockTicker[]>([]);
+
+  const routeParams = useRoute().params;
+  console.log('WatchListScreen.tsx: data: ', routeParams?.watchlist);
+
+  useEffect(() => {
+    if (routeParams?.watchlist) {
+      setData(routeParams.watchlist);
+    }
+  }, []);
+
   return (
-    <ScrollView>
+    <View>
       {data.map((stockTicker, index) => {
         return <WatchListRowItem key={index} {...stockTicker} />;
       })}
-    </ScrollView>
+    </View>
   );
 };
 
