@@ -1,6 +1,7 @@
 import { ScrollView, Text, View } from 'react-native';
 import { StockTicker } from './HomeScreen';
 import { useState } from 'react';
+import React from 'react';
 
 export const WatchListScreen = (watchlist: StockTicker[]) => {
   const [data, setData] = useState(watchlist);

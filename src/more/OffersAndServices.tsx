@@ -1,6 +1,7 @@
 import { View, Text, ScrollView } from 'react-native';
 import { otherServices } from '../../__sampleData__/OtherServices';
 import { useState } from 'react';
+import React from 'react';
 
 // a type of a service from otherServices
 type OfferType = {

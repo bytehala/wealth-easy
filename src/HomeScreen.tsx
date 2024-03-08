@@ -4,6 +4,7 @@ import { Accounts } from '../__sampleData__/Accounts';
 import { useState } from 'react';
 import Icon from 'react-native-vector-icons/Entypo';
 import { OffersAndServices } from './more/OffersAndServices';
+import React from 'react';
 
 export const HomeScreen = () => {
   const [data, setData] = useState(Accounts);
