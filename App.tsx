@@ -38,7 +38,7 @@ function App(): React.JSX.Element {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name={'Home'} component={HomeScreen} />
-          <Stack.Screen name={'Watchlist'} component={WatchListScreen} />
+          <Stack.Screen name={'My watchlist'} component={WatchListScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

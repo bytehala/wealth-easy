@@ -7,11 +7,12 @@ import { OffersAndServices } from './more/OffersAndServices';
 import React from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import { stockTickers } from '../__sampleData__/WatchList';
 
 // Define a type for your navigation structure
 type RootStackParamList = {
   Home: undefined;
-  Watchlist: { watchlist: StockTicker[] }; // replace StockTicker[] with the correct type for your watchlist
+  'My watchlist': { watchlist: StockTicker[] }; // replace StockTicker[] with the correct type for your watchlist
 };
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -61,7 +62,7 @@ export const HomeScreen = () => {
         onPress={() => {
           console.log('Open watchlist');
           console.log(stockTickersData);
-          navigation.navigate('Watchlist', { watchlist: stockTickersData });
+          navigation.navigate('My watchlist', { watchlist: stockTickersData });
         }}>
         <Text style={{ fontWeight: 'bold' }}>Open Watchlist</Text>
       </TouchableOpacity>
@@ -122,49 +123,3 @@ export type StockTicker = {
   performance: number;
   description: string; // e.g. Vanguard S&P 500 Index ETF
 };
-
-const stockTickers: StockTicker[] = [
-  {
-    ticker: 'VFV',
-    currencySymbol: '$',
-    price: 222.45,
-    currencyCode: 'CAD',
-    performance: 0.05,
-    description: 'Vanguard S&P 500 Index ETF',
-  },
-  {
-    ticker: 'AAPL',
-    currencySymbol: '$',
-    price: 123.45,
-    currencyCode: 'USD',
-    performance: -0.05,
-    description: 'Apple Inc.',
-  },
-  {
-    ticker: 'GOOGL',
-    currencySymbol: '$',
-    price: 2345.67,
-    currencyCode: 'USD',
-    performance: 0.03,
-    description: 'Alphabet Inc.',
-  },
-  {
-    ticker: 'AMZN',
-    currencySymbol: '$',
-    price: 3456.78,
-    currencyCode: 'USD',
-    performance: 0.07,
-    description: 'Amazon.com Inc.',
-  },
-  {
-    ticker: 'MSFT',
-    currencySymbol: '$',
-    price: 456.78,
-    currencyCode: 'USD',
-    performance: 2.97,
-    description: 'Microsoft Corporation',
-  },
-];
-function createStackNavigator() {
-  throw new Error('Function not implemented.');
-}
